@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
 import ItemRow from "./components/ItemRow";
-import ItemTable from "./components/ItemTable";
+import ItemList from "./components/ItemList";
 
 function App() {
   return (
     <React.Fragment>
       <main className="container">
-        <ItemTable />
+        <ItemList />
       </main>
     </React.Fragment>
   );

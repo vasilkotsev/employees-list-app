@@ -1,6 +1,7 @@
 import React from "react";
+import ItemRow from "./ItemRow";
 
-class ItemTable extends React.Component {
+class ItemList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -58,27 +59,19 @@ class ItemTable extends React.Component {
       return <div>Loading...</div>;
     } else {
       return (
-        <ul>
-          {items.map((item) => (
-            <li key={item.uuid}>
-              <br />
-              {item.company}
-              <br />
-              {item.bio}
-              <br />
-              {item.name}
-              <br />
-              {item.title}
-              <br />
-              <img src={item.avatar} alt="employ avatar" />
-            </li>
-          ))}
-        </ul>
+        <section className="item_list_section">
+          <h1 className="item_list_section_heading">Employees List App</h1>
+          <ul className="item_list">
+            {items.map((item) => (
+              <ItemRow key={item.uuid} item={item} />
+            ))}
+          </ul>
+        </section>
       );
     }
   }
 }
 
-ItemTable.propTypes = {};
+ItemList.propTypes = {};
 
-export default ItemTable;
+export default ItemList;
