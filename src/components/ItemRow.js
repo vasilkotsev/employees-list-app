@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ItemRow = (props) => {
-  console.log(props);
+  //console.log(props);
   const { bio, name, title, avatar, company } = props.item;
 
   return (

@@ -1,31 +1,29 @@
 import React from "react";
 import ItemRow from "./ItemRow";
+import Pagination from "./common/Pagination";
+import { paginate } from "../utils/paginate";
 
-class ItemList extends React.Component {
+class ItemsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
       isLoaded: false,
       items: [],
+      pageSize: 20,
+      currentPage: 1,
     };
   }
 
   componentDidMount() {
-    let url = "http://hiring.rewardgateway.net/list";
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    let url = "https://hiring.rewardgateway.net/list";
     let username = "medium";
     let password = "medium";
 
     let headers = new Headers();
+    headers.append("Authorization", "Basic " + btoa(username + ":" + password));
 
-    headers.set(
-      "Authorization",
-      "Basic " + Buffer.from(username + ":" + password).toString("base64")
-    );
-    headers.set("Authorization", "Basic " + btoa(username + ":" + password));
-
-    fetch(proxyurl + url, {
+    fetch(url, {
       method: "GET",
       headers: headers,
     })
@@ -51,27 +49,47 @@ class ItemList extends React.Component {
       );
   }
 
+  handlePageChange = (page) => {
+    this.setState({ currentPage: page });
+  };
+
   render() {
-    const { error, isLoaded, items } = this.state;
+    const {
+      error,
+      isLoaded,
+      items: allItems,
+      pageSize,
+      currentPage,
+    } = this.state;
+    const { length: count } = this.state.items;
+
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
-    } else {
+      return <div>LOADING...</div>;
+    } else if (count === 0) return <p>There is no employees in database</p>;
+    else {
+      const items = paginate(allItems, currentPage, pageSize);
       return (
         <section className="item_list_section">
-          <h1 className="item_list_section_heading">Employees List App</h1>
+          <h1 className="item_list_section_heading">Employees List</h1>
           <ul className="item_list">
             {items.map((item) => (
               <ItemRow key={item.uuid} item={item} />
             ))}
           </ul>
+          <Pagination
+            itemsCount={count}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            onPageChangeClick={this.handlePageChange}
+          />
         </section>
       );
     }
   }
 }
 
-ItemList.propTypes = {};
+ItemsList.propTypes = {};
 
-export default ItemList;
+export default ItemsList;

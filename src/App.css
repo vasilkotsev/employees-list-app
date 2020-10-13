@@ -1,5 +1,5 @@
 body {
-  background: cornflowerblue !important;
+  background: #85edf2 !important;
 }
 
 .item_list_section {
@@ -22,14 +22,17 @@ body {
   display: flex;
   flex-flow: row nowrap;
   padding: 18px 30px;
-  border-bottom: 1px solid dimgrey;
   align-items: center;
-  background: aliceblue;
+  background: #fafafa;
   min-height: 250px;
+}
 
+.item_row + .item_row {
+  border-top: 1px solid dimgrey;
 }
 
 .item_row_info_box {
+  width: 100%;
   padding: 10px 25px;
 }
 
@@ -76,4 +79,8 @@ body {
 .item_row_img:hover {
   transform: scale(1.2);
   transition: transform 0.3s ease;
+}
+
+.page-link {
+  cursor: pointer;
 }
