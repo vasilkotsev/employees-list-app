@@ -85,6 +85,12 @@ body {
   cursor: pointer;
 }
 
+.search-box {
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+}
+
 /* color picker styles */
 .color-picker-form-holder {
   width: 100%;

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const ItemRow = (props) => {
   const {
@@ -88,7 +87,5 @@ const ItemRow = (props) => {
     </li>
   );
 };
-
-ItemRow.propTypes = {};
 
 export default ItemRow;

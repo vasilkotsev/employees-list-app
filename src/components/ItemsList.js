@@ -1,6 +1,7 @@
 import React from "react";
 import ItemRow from "./ItemRow";
 import Pagination from "./common/Pagination";
+import SearchBox from "./common/SearchBox";
 import { paginate } from "../utils/paginate";
 
 class ItemsList extends React.Component {
@@ -12,6 +13,7 @@ class ItemsList extends React.Component {
       items: [],
       pageSize: 20,
       currentPage: 1,
+      searchQuery: "",
     };
   }
 
@@ -89,6 +91,10 @@ class ItemsList extends React.Component {
     }
   };
 
+  handleSearch = (query) => {
+    this.setState({ searchQuery: query, currentPage: 1 });
+  };
+
   render() {
     const {
       error,
@@ -96,8 +102,10 @@ class ItemsList extends React.Component {
       items: allItems,
       pageSize,
       currentPage,
+      searchQuery,
     } = this.state;
     const { length: count } = this.state.items;
+    console.log(allItems);
 
     if (error) {
       return <div style={{ textAlign: "center" }}>Error: {error.message}</div>;
@@ -108,10 +116,19 @@ class ItemsList extends React.Component {
         <p style={{ textAlign: "center" }}>There is no employees in database</p>
       );
     else {
-      const items = paginate(allItems, currentPage, pageSize);
+      let filteredItems = allItems;
+      if (searchQuery) {
+        filteredItems = allItems.filter((m) =>
+          m.rowLabel.toLowerCase().startsWith(searchQuery.toLowerCase())
+        );
+      }
+      const items = paginate(filteredItems, currentPage, pageSize);
+      const { length: totalCount } = filteredItems;
+
       return (
         <section className="item_list_section">
           <h1 className="item_list_section_heading">Employees List</h1>
+          <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <ul className="item_list">
             {items.map((item) => (
               <ItemRow
@@ -124,7 +141,7 @@ class ItemsList extends React.Component {
             ))}
           </ul>
           <Pagination
-            itemsCount={count}
+            itemsCount={totalCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChangeClick={this.handlePageChange}
@@ -134,7 +151,5 @@ class ItemsList extends React.Component {
     }
   }
 }
-
-ItemsList.propTypes = {};
 
 export default ItemsList;
