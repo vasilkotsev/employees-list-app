@@ -67,6 +67,28 @@ class ItemsList extends React.Component {
     this.setState({ items });
   };
 
+  handleLabelChange = (value, id) => {
+    const items = [...this.state.items];
+    const item = items.find((m) => m.uuid === id);
+    const index = items.indexOf(item);
+    items[index] = { ...item };
+    if (value !== " ") {
+      items[index].rowLabel = value;
+      this.setState({ items });
+    }
+  };
+
+  handleFocusOut = (value, id) => {
+    if (value.trim() === "") {
+      const items = [...this.state.items];
+      const item = items.find((m) => m.uuid === id);
+      const index = items.indexOf(item);
+      items[index] = { ...item };
+      items[index].rowLabel = "Here you can add a text";
+      this.setState({ items });
+    }
+  };
+
   render() {
     const {
       error,
@@ -96,6 +118,8 @@ class ItemsList extends React.Component {
                 key={item.uuid}
                 item={item}
                 onSelectChange={this.handleSelectChange}
+                onLabelChange={this.handleLabelChange}
+                onLabelFocusOut={this.handleFocusOut}
               />
             ))}
           </ul>

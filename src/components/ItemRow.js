@@ -12,8 +12,7 @@ const ItemRow = (props) => {
     rowColor,
     rowLabel,
   } = props.item;
-  const { onSelectChange } = props;
-
+  const { onSelectChange, onLabelChange, onLabelFocusOut } = props;
   function getItemRowColorClassName(rowColor) {
     let className;
     switch (rowColor) {
@@ -75,6 +74,16 @@ const ItemRow = (props) => {
           <span>Bio: </span>
           {bio}
         </p>
+        <div className="label_input">
+          <input
+            onChange={(e) => onLabelChange(e.target.value, uuid)}
+            onBlur={(e) => onLabelFocusOut(e.target.value, uuid)}
+            type="text"
+            placeholder={rowLabel}
+            value={rowLabel !== "Here you can add a text" ? rowLabel : ""}
+            className="label"
+          />
+        </div>
       </div>
     </li>
   );
