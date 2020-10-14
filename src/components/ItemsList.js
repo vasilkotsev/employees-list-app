@@ -32,6 +32,11 @@ class ItemsList extends React.Component {
       })
       .then(
         (result) => {
+          result.map((item) => {
+            item.rowColor = "default color";
+            item.rowLabel = "Here you can add a text";
+            return item;
+          });
           this.setState({
             isLoaded: true,
             items: result,
@@ -53,6 +58,15 @@ class ItemsList extends React.Component {
     this.setState({ currentPage: page });
   };
 
+  handleSelectChange = (value, id) => {
+    const items = [...this.state.items];
+    const item = items.find((m) => m.uuid === id);
+    const index = items.indexOf(item);
+    items[index] = { ...item };
+    items[index].rowColor = value;
+    this.setState({ items });
+  };
+
   render() {
     const {
       error,
@@ -64,10 +78,13 @@ class ItemsList extends React.Component {
     const { length: count } = this.state.items;
 
     if (error) {
-      return <div>Error: {error.message}</div>;
+      return <div style={{ textAlign: "center" }}>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>LOADING...</div>;
-    } else if (count === 0) return <p>There is no employees in database</p>;
+      return <div style={{ textAlign: "center" }}>LOADING...</div>;
+    } else if (count === 0)
+      return (
+        <p style={{ textAlign: "center" }}>There is no employees in database</p>
+      );
     else {
       const items = paginate(allItems, currentPage, pageSize);
       return (
@@ -75,7 +92,11 @@ class ItemsList extends React.Component {
           <h1 className="item_list_section_heading">Employees List</h1>
           <ul className="item_list">
             {items.map((item) => (
-              <ItemRow key={item.uuid} item={item} />
+              <ItemRow
+                key={item.uuid}
+                item={item}
+                onSelectChange={this.handleSelectChange}
+              />
             ))}
           </ul>
           <Pagination

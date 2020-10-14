@@ -84,3 +84,32 @@ body {
 .page-link {
   cursor: pointer;
 }
+
+/* color picker styles */
+.color-picker-form-holder {
+  width: 100%;
+  max-width: 200px;
+  margin: auto 0 0 auto;
+}
+
+.color-picker-form {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 10px;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.green {
+  background: green;
+}
