@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import ItemRowInfoBoxWrapper from "./ItemRowInfoBoxWrapper";
 import ItemRowColorPickerSelect from "./ItemRowColorPickerSelect";
 import ItemRowInfoText from "./ItemRowInfoText";

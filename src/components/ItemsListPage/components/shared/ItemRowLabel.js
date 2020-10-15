@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const ItemRowLabel = ({ item, onLabelChange, onLabelFocusOut }) => {
   const { uuid, rowLabel } = item;

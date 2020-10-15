@@ -1,7 +1,6 @@
 import React from "react";
 import ItemRowAvatar from "./ItemRowAvatar";
 import ItemRowInfoBox from "./ItemRowInfoBox";
-import AvatarModal from "./AvatarModal";
 
 const ItemRow = (props) => {
   const {

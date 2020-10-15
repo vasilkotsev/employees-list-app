@@ -1,5 +1,4 @@
 import React from "react";
-// import AvatarImage from "../../../../common/components/AvatarImage";
 import ModalImage from "../../../../common/components/ModalImage";
 
 const AvatarModal = ({ onClose, isVisible, src }) => {

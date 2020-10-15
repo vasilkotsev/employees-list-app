@@ -1,6 +1,5 @@
 import React from "react";
 import AvatarImage from "../../../../common/components/AvatarImage";
-import PropTypes from "prop-types";
 
 const ItemRowAvatar = ({ src, onOpen }) => {
   return (
