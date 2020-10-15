@@ -9,7 +9,7 @@ const ItemRowColorPickerSelect = ({ onSelectChange, rowColor, uuid }) => {
         defaultValue={rowColor}
         name="colors"
         id="colors"
-        className="color-picker-form"
+        className="form-control-sm color-picker-form"
       >
         <option value="select-color">Select a color</option>
         <option value="default-color">Default color</option>

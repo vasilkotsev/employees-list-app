@@ -1,5 +1,5 @@
 import React from "react";
-import ItemRowAvatar from "./itemRowAvatar";
+import ItemRowAvatar from "./ItemRowAvatar";
 import ItemRowInfoBox from "./ItemRowInfoBox";
 
 const ItemRow = (props) => {

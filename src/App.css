@@ -41,7 +41,7 @@ body {
 }
 
 .item_row_info_box p + p {
-  padding-top: 20px;
+  padding-top: 8px;
 }
 
 .item_row_info_box span {
@@ -85,8 +85,17 @@ body {
   cursor: pointer;
 }
 
-.label_input {
+.item-row-label {
+  margin-left: 15px;
+}
+
+.item-row-label_input {
   padding-top: 10px;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
 
 .search-box {
@@ -103,9 +112,8 @@ body {
 }
 
 .color-picker-form {
-  width: 100%;
-  max-width: 200px;
-  border-radius: 10px;
+  margin: auto 0 0 auto;
+  display: block;
 }
 
 .red {
