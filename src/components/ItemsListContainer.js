@@ -1,10 +1,8 @@
 import React from "react";
-import ItemRow from "./ItemRow";
-import Pagination from "./common/Pagination";
-import SearchBox from "./common/SearchBox";
-import { paginate } from "../utils/paginate";
+import { paginate } from "../common/utils/paginate";
+import ItemsListSection from "./ItemsListPage/components/ItemsListSection";
 
-class ItemsList extends React.Component {
+class ItemsListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,7 +103,6 @@ class ItemsList extends React.Component {
       searchQuery,
     } = this.state;
     const { length: count } = this.state.items;
-    console.log(allItems);
 
     if (error) {
       return <div style={{ textAlign: "center" }}>Error: {error.message}</div>;
@@ -126,30 +123,21 @@ class ItemsList extends React.Component {
       const { length: totalCount } = filteredItems;
 
       return (
-        <section className="item_list_section">
-          <h1 className="item_list_section_heading">Employees List</h1>
-          <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <ul className="item_list">
-            {items.map((item) => (
-              <ItemRow
-                key={item.uuid}
-                item={item}
-                onSelectChange={this.handleSelectChange}
-                onLabelChange={this.handleLabelChange}
-                onLabelFocusOut={this.handleFocusOut}
-              />
-            ))}
-          </ul>
-          <Pagination
-            itemsCount={totalCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChangeClick={this.handlePageChange}
-          />
-        </section>
+        <ItemsListSection
+          items={items}
+          totalCount={totalCount}
+          pageSize={pageSize}
+          searchQuery={searchQuery}
+          currentPage={currentPage}
+          onSelectChange={this.handleSelectChange}
+          onLabelChange={this.handleLabelChange}
+          onLabelFocusOut={this.handleFocusOut}
+          onChange={this.handleSearch}
+          onPageChangeClick={this.handlePageChange}
+        />
       );
     }
   }
 }
 
-export default ItemsList;
+export default ItemsListContainer;

@@ -85,6 +85,10 @@ body {
   cursor: pointer;
 }
 
+.label_input {
+  padding-top: 10px;
+}
+
 .search-box {
   width: 100%;
   max-width: 400px;
