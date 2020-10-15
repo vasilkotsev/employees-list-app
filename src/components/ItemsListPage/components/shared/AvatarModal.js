@@ -1,4 +1,6 @@
 import React from "react";
+// import AvatarImage from "../../../../common/components/AvatarImage";
+import ModalImage from "../../../../common/components/ModalImage";
 
 const AvatarModal = ({ onClose, isVisible, src }) => {
   return (
@@ -7,7 +9,7 @@ const AvatarModal = ({ onClose, isVisible, src }) => {
         isVisible ? "avatar-modal-wrapper show-avatar" : "avatar-modal-wrapper"
       }
     >
-      <img className="avatar-modal-img" src={src} alt="avatar" />
+      <ModalImage className="avatar-modal-img" src={src} />
       <span onClick={() => onClose()}>
         <i className="fa fa-times" aria-hidden="true" />
       </span>

@@ -3,7 +3,6 @@ import SearchBox from "../../../common/components/SearchBox";
 import ItemRow from "./shared/ItemRow";
 import Pagination from "../../../common/components/Pagination";
 import ItemsList from "./shared/ItemsList";
-import AvatarModal from "./shared/AvatarModal";
 
 const ItemsListSection = ({
   items,

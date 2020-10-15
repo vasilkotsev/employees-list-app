@@ -146,7 +146,6 @@ class ItemsListContainer extends React.Component {
             src={src}
           />
           <ItemsListSection
-            onOpen={this.handleOpenAvatar}
             items={items}
             totalCount={totalCount}
             pageSize={pageSize}
@@ -157,6 +156,7 @@ class ItemsListContainer extends React.Component {
             onLabelFocusOut={this.handleFocusOut}
             onChange={this.handleSearch}
             onPageChangeClick={this.handlePageChange}
+            onOpen={this.handleOpenAvatar}
           />
         </React.Fragment>
       );
