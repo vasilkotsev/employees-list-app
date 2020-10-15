@@ -1,15 +1,16 @@
 body {
-  background: #85edf2 !important;
+  background: #CCD0D5 !important;
 }
 
 .item_list_section {
   padding: 80px 0;
-  background: #ffffff;
+  background: #dadde1;
 }
 
 .item_list_section_heading {
   text-align: center;
   font-size: 54px;
+  padding-bottom: 30px;
 }
 
 .item_list {
@@ -106,7 +107,6 @@ body {
   width: 100%;
   max-width: 400px;
   display: flex;
-  align-content: center;
   align-items: center;
 }
 
@@ -129,19 +129,19 @@ body {
 }
 
 .red {
-  background: red;
+  background: #ed221f;
 }
 
 .blue {
-  background: blue;
+  background: #4287f5;
 }
 
 .yellow {
-  background: yellow;
+  background: #edea1f;
 }
 
 .green {
-  background: green;
+  background: #52ed1f;
 }
 
 /* Avatar Modal Styles */
