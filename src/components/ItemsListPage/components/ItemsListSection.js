@@ -3,6 +3,7 @@ import SearchBox from "../../../common/components/SearchBox";
 import ItemRow from "./shared/ItemRow";
 import Pagination from "../../../common/components/Pagination";
 import ItemsList from "./shared/ItemsList";
+import AvatarModal from "./shared/AvatarModal";
 
 const ItemsListSection = ({
   items,
@@ -15,6 +16,7 @@ const ItemsListSection = ({
   onLabelFocusOut,
   onChange,
   onPageChangeClick,
+  onOpen,
 }) => {
   return (
     <section className="item_list_section">
@@ -28,6 +30,7 @@ const ItemsListSection = ({
             onSelectChange={onSelectChange}
             onLabelChange={onLabelChange}
             onLabelFocusOut={onLabelFocusOut}
+            onOpen={onOpen}
           />
         ))}
       </ItemsList>

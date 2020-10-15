@@ -1,9 +1,16 @@
 import React from "react";
 import ItemRowAvatar from "./ItemRowAvatar";
 import ItemRowInfoBox from "./ItemRowInfoBox";
+import AvatarModal from "./AvatarModal";
 
 const ItemRow = (props) => {
-  const { item, onSelectChange, onLabelChange, onLabelFocusOut } = props;
+  const {
+    item,
+    onSelectChange,
+    onLabelChange,
+    onLabelFocusOut,
+    onOpen,
+  } = props;
   const { avatar, rowColor } = props.item;
 
   function getItemRowColorClassName(rowColor) {
@@ -29,7 +36,7 @@ const ItemRow = (props) => {
 
   return (
     <li className={["item_row", getItemRowColorClassName(rowColor)].join(" ")}>
-      <ItemRowAvatar src={avatar} />
+      <ItemRowAvatar src={avatar} onOpen={onOpen} />
       <ItemRowInfoBox
         onSelectChange={onSelectChange}
         onLabelChange={onLabelChange}

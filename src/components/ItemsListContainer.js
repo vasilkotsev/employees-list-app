@@ -1,6 +1,7 @@
 import React from "react";
 import { paginate } from "../common/utils/paginate";
 import ItemsListSection from "./ItemsListPage/components/ItemsListSection";
+import AvatarModal from "./ItemsListPage/components/shared/AvatarModal";
 
 class ItemsListContainer extends React.Component {
   constructor(props) {
@@ -12,6 +13,10 @@ class ItemsListContainer extends React.Component {
       pageSize: 20,
       currentPage: 1,
       searchQuery: "",
+      modalAvatar: {
+        isVisible: false,
+        src: "",
+      },
     };
   }
 
@@ -93,6 +98,16 @@ class ItemsListContainer extends React.Component {
     this.setState({ searchQuery: query, currentPage: 1 });
   };
 
+  handleCloseAvatar = () => {
+    this.setState({ modalAvatar: { isVisible: false, src: "" } });
+    document.body.style.overflow = "auto";
+  };
+
+  handleOpenAvatar = (src) => {
+    this.setState({ modalAvatar: { isVisible: true, src: src } });
+    document.body.style.overflow = "hidden";
+  };
+
   render() {
     const {
       error,
@@ -103,6 +118,7 @@ class ItemsListContainer extends React.Component {
       searchQuery,
     } = this.state;
     const { length: count } = this.state.items;
+    const { isVisible, src } = this.state.modalAvatar;
 
     if (error) {
       return <div style={{ textAlign: "center" }}>Error: {error.message}</div>;
@@ -123,18 +139,26 @@ class ItemsListContainer extends React.Component {
       const { length: totalCount } = filteredItems;
 
       return (
-        <ItemsListSection
-          items={items}
-          totalCount={totalCount}
-          pageSize={pageSize}
-          searchQuery={searchQuery}
-          currentPage={currentPage}
-          onSelectChange={this.handleSelectChange}
-          onLabelChange={this.handleLabelChange}
-          onLabelFocusOut={this.handleFocusOut}
-          onChange={this.handleSearch}
-          onPageChangeClick={this.handlePageChange}
-        />
+        <React.Fragment>
+          <AvatarModal
+            onClose={this.handleCloseAvatar}
+            isVisible={isVisible}
+            src={src}
+          />
+          <ItemsListSection
+            onOpen={this.handleOpenAvatar}
+            items={items}
+            totalCount={totalCount}
+            pageSize={pageSize}
+            searchQuery={searchQuery}
+            currentPage={currentPage}
+            onSelectChange={this.handleSelectChange}
+            onLabelChange={this.handleLabelChange}
+            onLabelFocusOut={this.handleFocusOut}
+            onChange={this.handleSearch}
+            onPageChangeClick={this.handlePageChange}
+          />
+        </React.Fragment>
       );
     }
   }
